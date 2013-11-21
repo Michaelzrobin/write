@@ -3,18 +3,23 @@ layout: default
 title: Homepage
 ---
 
-<h2>Blog Post 1</h2>
-<div>
-    <p>We love the Starter League because Sandy, Arjun and Arvin are so helpful.  Although we are frustrated and confused by terminal and jekyll, we know they will help us understand it better on Wednesday.  Phew!</p>
-</div>
+{% for banana in site.posts %}
 
-<div>
-    <button>Like</button>
-    <button> Reblog</button>
-    <span>Date</span>
-</div>
+<article>
+    <h2 class="blog-header"><a href="{{ banana.url }}">{{ banana.title }}</a></h2>
 
-<div>
-    <span>Comment</span>
-</div>
+    <div class="blog-post">
+        by {{ banana.author }}
+        <br><br>
+        {{ banana.content }}
+    </div>
 
+    <div class="blog-post-footer">
+        <div class="post-footer-links"><a href="">Like</a></div>
+        <div class="post-footer-links"><a href="">Reblog</a></div>
+        <div class="post-footer-links"><a href="">{{ banana.date | date_to_string }}</a></div>
+        <div class="post-footer-links post-comment"><a href="">Comments</a></div>
+    </div>
+</article>
+
+{% endfor %}
